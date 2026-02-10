@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos globais para melhorar a experiência em dispositivos móveis */
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Melhorias de scroll em mobile */
+  @supports (-webkit-overflow-scrolling: touch) {
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}
+
+/* Utilitário para limitar linhas de texto */
+@layer utilities {
+  .line-clamp-6 {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Animações suaves para melhor experiência */
+@layer base {
+  * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+}
+
+/* Scrollbar personalizada */
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.7);
+  }
+}

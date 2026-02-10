@@ -1,0 +1,16 @@
+![Cover](./.github/cover.png)
+
+# NLW Expert (React)
+
+Essa aplicação foi desenvolvida durante o NLW Experts da Rocketseat utilizando React, TypeScript, Tailwind e a SpeechRecognition API.
+
+## Executando
+
+Após clonar o repositório, acesse a pasta do projeto e execute os comandos abaixo:
+
+```sh
+npm install
+npm run dev
+```
+
+Acesse [updatenotes2.netlify.app](https://updatenotes2.netlify.app/) para visualizar a aplicação.
