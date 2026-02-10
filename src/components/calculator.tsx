@@ -146,14 +146,6 @@ export function Calculator() {
     setShouldResetDisplay(false);
   }
 
-  /**
-   * Função para adicionar/remover o sinal negativo
-   */
-  function handleToggleSign() {
-    if (display !== "0") {
-      setDisplay(display.startsWith("-") ? display.slice(1) : "-" + display);
-    }
-  }
 
   /**
    * Função para calcular a porcentagem
