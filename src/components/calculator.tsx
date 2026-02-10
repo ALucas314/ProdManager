@@ -343,8 +343,25 @@ export function Calculator() {
                 {buttons.map((button, index) => (
                   <button
                     key={index}
-                    onClick={button.onClick}
-                    className={`${button.className} rounded-lg p-3 md:p-4 text-lg md:text-xl font-semibold transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg`}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      button.onClick(e);
+                    }}
+                    onTouchStart={(e) => {
+                      // Previne que o teclado virtual apareça no mobile
+                      e.preventDefault();
+                      button.onClick(e as any);
+                    }}
+                    onFocus={(e) => {
+                      // Remove o foco imediatamente para prevenir teclado
+                      e.currentTarget.blur();
+                    }}
+                    className={`${button.className} rounded-lg p-3 md:p-4 text-lg md:text-xl font-semibold transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg touch-manipulation`}
+                    style={{ 
+                      WebkitTapHighlightColor: 'transparent',
+                      touchAction: 'manipulation'
+                    }}
                   >
                     {button.label}
                   </button>

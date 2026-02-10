@@ -27,6 +27,8 @@ export function NewNoteCard({ onNoteCreated }: NewNoteProps) {
       const calculatorVisible = calculator && window.getComputedStyle(calculator as HTMLElement).display !== 'none';
       const dialogContent = document.querySelector('[data-radix-dialog-content]') as HTMLElement;
       const dialogOverlay = document.querySelector('[data-radix-dialog-overlay]') as HTMLElement;
+      // Encontra o textarea dentro do dialog
+      const textarea = dialogContent?.querySelector('textarea') as HTMLTextAreaElement;
 
       if (calculatorVisible) {
         setCalculatorIsOpen(true);
@@ -39,6 +41,14 @@ export function NewNoteCard({ onNoteCreated }: NewNoteProps) {
         if (dialogOverlay && isOpen) {
           dialogOverlay.style.pointerEvents = 'none';
         }
+        // Remove o foco do textarea e previne que receba foco quando a calculadora está aberta
+        if (textarea) {
+          textarea.blur();
+          textarea.readOnly = true;
+          textarea.style.pointerEvents = 'none';
+          // Previne que o teclado apareça
+          textarea.setAttribute('inputmode', 'none');
+        }
       } else {
         setCalculatorIsOpen(false);
         if (dialogContent && isOpen) {
@@ -50,6 +60,12 @@ export function NewNoteCard({ onNoteCreated }: NewNoteProps) {
         if (dialogOverlay && isOpen) {
           dialogOverlay.style.pointerEvents = 'auto';
         }
+        // Restaura o textarea quando a calculadora fecha
+        if (textarea) {
+          textarea.readOnly = false;
+          textarea.style.pointerEvents = 'auto';
+          textarea.removeAttribute('inputmode');
+        }
       }
     };
 
@@ -58,6 +74,30 @@ export function NewNoteCard({ onNoteCreated }: NewNoteProps) {
 
     return () => clearInterval(interval);
   }, [isOpen]);
+
+  // Effect adicional para prevenir que o textarea receba foco quando a calculadora está aberta
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleFocus = (e: FocusEvent) => {
+      if (calculatorIsOpen) {
+        const target = e.target as HTMLElement;
+        if (target.tagName === 'TEXTAREA' || target.tagName === 'INPUT') {
+          // Se a calculadora estiver aberta, remove o foco imediatamente
+          target.blur();
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+    };
+
+    // Adiciona listener para prevenir foco em inputs/textareas quando calculadora está aberta
+    document.addEventListener('focusin', handleFocus, true);
+
+    return () => {
+      document.removeEventListener('focusin', handleFocus, true);
+    };
+  }, [isOpen, calculatorIsOpen]);
 
   function handleStartEditor() {
     setShouldShowOnboarding(false);

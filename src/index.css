@@ -18,6 +18,13 @@
       -webkit-overflow-scrolling: touch;
     }
   }
+  
+  /* Previne que botões da calculadora abram o teclado virtual */
+  button[type="button"] {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
 }
 
 /* Utilitário para limitar linhas de texto */
