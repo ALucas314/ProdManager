@@ -319,8 +319,8 @@ export function NewNoteCard({ onNoteCreated }: NewNoteProps) {
             }
           }}
         >
-          <Dialog.Close className="absolute right-0 top-0 bg-slate-800 p-1.5 text-slate-400 hover:text-slate-100">
-            <X className="size-5" />
+          <Dialog.Close className="absolute right-2 top-2 bg-slate-800/80 hover:bg-slate-700/80 backdrop-blur-sm p-2 rounded-lg text-slate-400 hover:text-white transition-all duration-200 hover:scale-110 shadow-lg border border-slate-700/50 hover:border-slate-600/50">
+            <X className="size-4" />
           </Dialog.Close>
 
           <form className="flex-1 flex flex-col">
