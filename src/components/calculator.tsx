@@ -346,12 +346,12 @@ export function Calculator() {
                     type="button"
                     onClick={(e) => {
                       e.preventDefault();
-                      button.onClick(e);
+                      button.onClick();
                     }}
                     onTouchStart={(e) => {
                       // Previne que o teclado virtual apareça no mobile
                       e.preventDefault();
-                      button.onClick(e as any);
+                      button.onClick();
                     }}
                     onFocus={(e) => {
                       // Remove o foco imediatamente para prevenir teclado
