@@ -344,14 +344,15 @@ export function Calculator() {
                   <button
                     key={index}
                     type="button"
-                    onClick={(e) => {
+                    onPointerDown={(e) => {
+                      // Usa onPointerDown que funciona tanto para mouse quanto touch
                       e.preventDefault();
                       button.onClick();
                     }}
-                    onTouchStart={(e) => {
-                      // Previne que o teclado virtual apareça no mobile
+                    onClick={(e) => {
+                      // Previne o comportamento padrão mas não executa a função
+                      // pois o onPointerDown já executou
                       e.preventDefault();
-                      button.onClick();
                     }}
                     onFocus={(e) => {
                       // Remove o foco imediatamente para prevenir teclado
@@ -360,7 +361,10 @@ export function Calculator() {
                     className={`${button.className} rounded-lg p-3 md:p-4 text-lg md:text-xl font-semibold transition-all duration-200 active:scale-95 shadow-md hover:shadow-lg touch-manipulation`}
                     style={{ 
                       WebkitTapHighlightColor: 'transparent',
-                      touchAction: 'manipulation'
+                      touchAction: 'manipulation',
+                      WebkitUserSelect: 'none',
+                      userSelect: 'none',
+                      WebkitTouchCallout: 'none'
                     }}
                   >
                     {button.label}
