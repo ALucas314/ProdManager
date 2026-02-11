@@ -234,7 +234,7 @@ export function Calculator() {
     <button
       ref={buttonRef}
       onClick={handleCalculatorButtonClick}
-      className="fixed bottom-20 md:bottom-24 right-6 z-[9999] bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center w-16 h-16 md:w-20 md:h-20"
+      className="fixed bottom-40 md:bottom-44 right-6 z-[9999] bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center w-16 h-16 md:w-20 md:h-20"
       aria-label="Abrir calculadora"
       style={{ 
         pointerEvents: 'auto',
@@ -258,7 +258,7 @@ export function Calculator() {
       {/* Não fecha ao clicar no overlay para permitir que o dialog continue aberto */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/30 z-[90] backdrop-blur-sm"
+          className="fixed inset-0 bg-black/30 z-[90] backdrop-blur-sm animate-fade-in"
           onClick={(e) => {
             // Não fecha ao clicar no overlay para permitir que o dialog continue aberto
             // A calculadora só fecha ao clicar no botão X
@@ -271,7 +271,7 @@ export function Calculator() {
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8" style={{ pointerEvents: 'auto' }}>
           <div
-            className="bg-slate-800 rounded-2xl shadow-2xl w-full max-w-sm border border-slate-700 overflow-hidden"
+            className="bg-slate-800 rounded-2xl shadow-2xl w-full max-w-sm border border-slate-700 overflow-hidden animate-calculator-enter"
             onClick={(e) => e.stopPropagation()}
             style={{ pointerEvents: 'auto' }}
           >

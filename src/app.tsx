@@ -46,6 +46,22 @@ export function App() {
     localStorage.setItem("notes", JSON.stringify(notesArray));
   }
 
+  function onNoteEdited(id: string, newContent: string) {
+    const notesArray = notes.map((note) => {
+      if (note.id === id) {
+        return {
+          ...note,
+          content: newContent,
+          date: new Date(), // Atualiza a data quando edita
+        };
+      }
+      return note;
+    });
+
+    setNotes(notesArray);
+    localStorage.setItem("notes", JSON.stringify(notesArray));
+  }
+
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
 
@@ -103,7 +119,12 @@ export function App() {
 
           {filteredNotes.map((note) => {
             return (
-              <NoteCard onNoteDeleted={onNoteDeleted} key={note.id} note={note} />
+              <NoteCard 
+                onNoteDeleted={onNoteDeleted} 
+                onNoteEdited={onNoteEdited}
+                key={note.id} 
+                note={note} 
+              />
             );
           })}
         </div>
